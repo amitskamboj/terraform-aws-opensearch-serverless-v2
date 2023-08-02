@@ -1,3 +1,8 @@
+# Require Terraform 0.12 or greater
+terraform {
+  required_version = ">= 0.12"
+}
+
 # Creates an encryption security policy
 resource "aws_opensearchserverless_security_policy" "encryption_policy" {
   name        = "${var.collection_name}-encryption-policy"
