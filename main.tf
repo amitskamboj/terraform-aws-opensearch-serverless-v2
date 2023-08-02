@@ -1,8 +1,3 @@
-# Require Terraform 0.12 or greater
-terraform {
-  required_version = ">= 0.12"
-}
-
 # Creates an encryption security policy
 resource "aws_opensearchserverless_security_policy" "encryption_policy" {
   name        = "${var.collection_name}-encryption-policy"
@@ -47,10 +42,18 @@ resource "aws_opensearchserverless_security_policy" "network_policy" {
       ],
       AllowFromPublic = false,
       SourceVPCEs = [
-        var.vpce_id
+        aws_opensearchserverless_vpc_endpoint.vpc_endpoint.id
       ]
     }
   ])
+}
+
+# Creates a VPC endpoint
+resource "aws_opensearchserverless_vpc_endpoint" "vpc_endpoint" {
+  name               = "${var.collection_name}-vpc-endpoint"
+  vpc_id             = var.vpc_id
+  subnet_ids         = var.subnet_ids
+  security_group_ids = [var.oss_vpc_endpoint_sg_id]
 }
 
 # Creates a data access policy
