@@ -50,7 +50,7 @@ resource "aws_opensearchserverless_security_policy" "network_policy" {
 
 # Creates a data access policy
 resource "aws_opensearchserverless_access_policy" "data_access_policy" {
-  name        = "${var.collection_name}-data-access-policy"
+  name        = "${var.collection_name}-access-policy"
   type        = "data"
   description = "allow index and collection access"
   policy = jsonencode([
