@@ -12,16 +12,7 @@ variable "data_access_policy_principal" {
   description = "Opensearch serverless data access policy principal"
 }
 
-variable "vpc_id" {
-  type = string
-}
-
-variable "subnet_ids" {
-  type    = list(string)
-  description = "subnet ids"
-}
-
-variable "oss_vpc_endpoint_sg_id" {
+variable "vpc_endpoint_id" {
   type = string
 }
 
